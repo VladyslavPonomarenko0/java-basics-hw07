@@ -11,8 +11,16 @@ public class SumAverage {
    * @return sum of integers
    */
   public static int sum(int lowerBound, int upperBound) {
-    // TODO fill in code here using for loop and replace the return statement
-    return -1;
+    int sum = 0;
+    //Lower bound is always less than or equals to upper bound
+    if (lowerBound <= upperBound) {
+      for (int i = lowerBound; i <= upperBound; i++) {
+        sum += i;
+      }
+    } else {
+      System.out.println("enter a valid lowerBound");
+    }
+    return sum;
   }
 
   /**
@@ -22,8 +30,11 @@ public class SumAverage {
    * @return sum of integers
    */
   public static int sum(int[] numbers) {
-    // TODO fill in code here using for each loop and replace the return statement
-    return -1;
+    int sumArray = 0;
+    for (int h : numbers) {
+      sumArray += h;
+    }
+    return sumArray;
   }
 
   /**
@@ -34,8 +45,19 @@ public class SumAverage {
    * @return average of integers
    */
   public static double average(int lowerBound, int upperBound) {
-    // TODO fill in code here using while loop and replace the return statement
-    return -1;
+    // for example [-3,-1] - there are 3 elements, but now we should divide our sum by the lower bound
+    if (upperBound < 0) {
+      return -(double) sum(lowerBound, upperBound) / lowerBound;
+    }
+    // when the lower bound = 0, but we should count it as an element for proper division
+    if (lowerBound == 0 && upperBound != 0) {
+      return (double) sum(lowerBound, upperBound) / (upperBound + 1);
+    }
+    // to avoid NaN situations
+    if (upperBound == 0 && lowerBound == 0) {
+      return 0.0d;
+    }
+    return (double) sum(lowerBound, upperBound) / upperBound;
   }
 
   /**
@@ -45,7 +67,14 @@ public class SumAverage {
    * @return average of integers
    */
   public static double average(int[] numbers) {
-    // TODO fill in code here using do-while loop and replace the return statement
-    return -1;
+    int sumArray = 0;
+    for (int h : numbers) {
+      sumArray += h;
+    }
+    // to avoid NaN situations
+    if (sumArray == 0.0) {
+      return 0.0d;
+    }
+    return (double) sumArray / numbers.length;
   }
 }
